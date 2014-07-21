@@ -16,6 +16,7 @@ chart_module.factory('ChartFilter1', [function () {
 
     data.max_x = 0;
     data.discarded_points = [];
+
     data.filtered_data = _.filter(series, function (e) {
         var max_y = calc_norm(e[2]);
         if (e[1] < 2 * max_y) {

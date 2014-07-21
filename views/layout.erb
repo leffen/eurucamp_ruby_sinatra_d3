@@ -32,22 +32,15 @@
   </div>
   <!-- /.navbar-collapse -->
 </div>
-<div class="container">
-  <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
-  <%= yield %>
-</div>
 
+<%= yield %>
 
 <%= javascript_script_tag 'components/underscore/underscore.js' %>
-<%= javascript_script_tag 'components/jquery/jquery.js' %>
+<%= javascript_script_tag 'components/jquery/dist/jquery.js' %>
 <%= javascript_script_tag 'components/bootstrap/dist/js/bootstrap.min.js' %>
 <%= javascript_script_tag 'components/angular/angular.js' %>
 <%= javascript_script_tag 'components/angular-resource/angular-resource.js' %>
-<%= javascript_script_tag 'components/angular-animate/angular-animate.js' %>
 <%= javascript_script_tag 'components/angular-route/angular-route.js' %>
-<%= javascript_script_tag 'components/angular-ui/build/angular-ui.js' %>
-<%= javascript_script_tag 'components/angular-ui-router/release/angular-ui-router.js' %>
-<%= javascript_script_tag 'components/angular-ui-bootstrap/dist/ui-bootstrap-tpls-0.10.0.js' %>
 <%= javascript_script_tag 'components/d3/d3.js' %>
 <%= javascript_script_tag 'components/nvd3/nv.d3.js' %>
 <%= javascript_script_tag 'components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js' %>
