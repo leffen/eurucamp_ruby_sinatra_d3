@@ -1,0 +1,28 @@
+<div class="well">
+    <h2>Transkoding i forhold til lengde</h2>
+
+    <nvd3-line-chart
+            data="r2_data"
+            y="data_y()"
+            x="data_x()"
+            id="xr2_graph"
+            showXAxis="true"
+            showYAxis="true"
+            tooltips="true"
+            xAxisTickFormat="xAxisTickFormatFunction()"
+            yAxisTickFormat="yAxisTickFormatFunction()"
+            interactive="true"
+            class="chart"
+            color="infoColor()"
+            tooltipContent="tooltip()"
+            callback="callback()"
+            >
+        <svg></svg>
+    </nvd3-line-chart>
+
+    <button class="btn btn-primary" ng-click="filter1()">Filter 1</button>
+</div>
+
+
+
+

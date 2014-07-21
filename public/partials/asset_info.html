@@ -1,0 +1,15 @@
+<article class="asset" ng-cloak>
+    <h3>{{asset.id}} {{asset.title}}</h3>
+    <ul>
+        <li>første tid: {{asset.event_start.timestamp |date:'d.M HH:mm:ss' }}</li>
+        <li>siste tid: {{asset.event_end.timestamp | date:'d.M HH:mm:ss' }}</li>
+        <li>tags: {{asset.tags}}</li>
+        <li>siste oppdatering: {{asset.lastUpdatedSumo}}</li>
+    </ul>
+    <img ng-src="{{asset.image_url}}"/>
+
+    <ul class="events">
+        <li ng-repeat="event in asset.events">{{event.timestamp}} - {{event.eventName}}</li>
+    </ul>
+
+</article>

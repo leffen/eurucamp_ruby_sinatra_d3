@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="crp">
+<head>
+  <title>Clip report</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'components/bootstrap/dist/css/bootstrap.min.css' %>
+  <%= stylesheet_link_tag 'components/nvd3/nv.d3.css' %>
+  <%= stylesheet_link_tag 'css/crp.css' %>
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+<div class="navbar navbar-inverse  navbar-static-top" role="navigation" ng-controller="NavbarController">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Clip report</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li ng-class="{active: routeIs('/')}"><a href="#/">Hjem</a></li>
+      <li ng-class="{active: routeIs('/om')}"><a href="#/om">Om</a></li>
+    </ul>
+
+  </div>
+  <!-- /.navbar-collapse -->
+</div>
+<div class="container">
+  <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
+  <%= yield %>
+</div>
+
+
+<%= javascript_script_tag 'components/underscore/underscore.js' %>
+<%= javascript_script_tag 'components/jquery/jquery.js' %>
+<%= javascript_script_tag 'components/bootstrap/dist/js/bootstrap.min.js' %>
+<%= javascript_script_tag 'components/angular/angular.js' %>
+<%= javascript_script_tag 'components/angular-resource/angular-resource.js' %>
+<%= javascript_script_tag 'components/angular-animate/angular-animate.js' %>
+<%= javascript_script_tag 'components/angular-route/angular-route.js' %>
+<%= javascript_script_tag 'components/angular-ui/build/angular-ui.js' %>
+<%= javascript_script_tag 'components/angular-ui-router/release/angular-ui-router.js' %>
+<%= javascript_script_tag 'components/angular-ui-bootstrap/dist/ui-bootstrap-tpls-0.10.0.js' %>
+<%= javascript_script_tag 'components/d3/d3.js' %>
+<%= javascript_script_tag 'components/nvd3/nv.d3.js' %>
+<%= javascript_script_tag 'components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js' %>
+
+
+<%= javascript_script_tag 'js/crp_utils.js' %>
+<%= javascript_script_tag 'js/crp_services.js' %>
+<%= javascript_script_tag 'js/chart/chart.js' %>
+<%= javascript_script_tag 'js/crp.js' %>
+
+
+</body>
+</html>
