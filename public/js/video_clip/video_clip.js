@@ -42,7 +42,8 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
       templateUrl: 'partials/report2.html',
       scope: {
         report_data: '=data',
-        data_filter: '&xfilter'
+        data_filter: '&xfilter',
+        title: '='
       },
       replace: true,
       controller: function($scope,CrpUtils) {
@@ -92,6 +93,10 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
       function calc_norm(clip_length) {
         return clip_length * 5.67 + 1200;
       };
+
+      $scope.show_asset=function(data) {
+        console.log("Show asset ",data);
+      }
 
       $scope.filter1 = function () {
         var data = TransfertimeNormalizeFilter.filter($scope.src_data);

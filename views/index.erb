@@ -39,7 +39,7 @@
   <div class="row">
     <div class="col-lg-8">
       <div ng-controller="VideoClipChartController">
-        <div report data="transfer_data" xfilter="filter1()"></div>
+        <div report data="transfer_data" xfilter="filter1()" title="'Transcoding/clip length'"></div>
       </div>
 
       <%= partial(:bar_chart_example) %>
