@@ -1,23 +1,50 @@
-<button class="btn btn-primary" ng-click="filter1()">Filter 1</button>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-bar-chart-o fa-fw"></i> Report 1
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                    Actions
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="#">Action</a>
+                    </li>
+                    <li><a href="#">Another action</a>
+                    </li>
+                    <li><a href="#">Something else here</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
 
-<nvd3-line-chart
-        data="transfer_data"
-        y="data_y()"
-        x="data_x()"
-        id="xr2_graph"
-        showXAxis="true"
-        showYAxis="true"
-        tooltips="true"
-        xAxisTickFormat="xAxisTickFormatFunction()"
-        yAxisTickFormat="yAxisTickFormatFunction()"
-        interactive="true"
-        class="chart"
-        color="infoColor()"
-        tooltipContent="tooltip()"
-        callback="callback()"
-        >
-    <svg></svg>
-</nvd3-line-chart>
+        <button class="btn btn-primary" ng-click="filter1()">Filter 1</button>
+
+        <nvd3-line-chart
+                data="transfer_data"
+                y="data_y()"
+                x="data_x()"
+                id="xr2_graph"
+                showXAxis="true"
+                showYAxis="true"
+                tooltips="true"
+                xAxisTickFormat="xAxisTickFormatFunction()"
+                yAxisTickFormat="yAxisTickFormatFunction()"
+                interactive="true"
+                class="chart"
+                color="infoColor()"
+                tooltipContent="tooltip()"
+                callback="callback()"
+                >
+            <svg></svg>
+        </nvd3-line-chart>
+    </div>
+</div>
 
 
 

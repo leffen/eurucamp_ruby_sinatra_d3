@@ -4,12 +4,6 @@
   height:400px;
 }
 
-/*!
- * Start Bootstrap - SB Admin 2 Bootstrap Admin Theme (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
-
 body {
   background-color: #f8f8f8;
 }
@@ -27,7 +21,6 @@ body {
 @media(min-width:768px) {
   #page-wrapper {
     position: inherit;
-    margin: 0 0 0 250px;
     padding: 0 30px;
     border-left: 1px solid #e7e7e7;
   }
