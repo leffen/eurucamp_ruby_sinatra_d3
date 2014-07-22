@@ -25,7 +25,8 @@
     "angular-route": "~1.2.20",
     "metisMenu": "~1.1.1",
     "font-awesome": "~4.1.0",
-    "toastr": "~2.0.3"
+    "toastr": "~2.0.3",
+    "angular-ui-router": "~0.2.10"
   },
   "resolutions": {
     "d3": "~3.4.1"

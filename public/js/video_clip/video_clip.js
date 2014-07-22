@@ -36,6 +36,40 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
     };
     return factory;
   }])
+  .directive('report',function() {
+    return {
+      restrict: 'EA',
+      templateUrl: 'partials/report2.html',
+      scope: {
+        report_data: '=data',
+        data_filter: '&xfilter'
+      },
+      replace: true,
+      controller: function($scope,CrpUtils) {
+
+        $scope.data_x = function () {return function (d, i) {return d[2]}};
+        $scope.data_y = function () {return function (d, i) {return d[1]}};
+
+        // handle graphs
+        $scope.xAxisTickFormatFunction = function () { return function (secs) {return CrpUtils.secondsToTime(secs);};};
+        $scope.yAxisTickFormatFunction = function () {return function (d) {return CrpUtils.secondsToTime(d);};};
+
+        $scope.infoColor = function () {
+          return function (d, i) {
+            if (i === 0) return 'blue';
+            return 'red';
+          };
+        };
+        $scope.tooltip = function () {
+          return function (key, x, y, e, graph) {
+            if (e.seriesIndex == 1) return "";
+            return  'Video clip ' +
+              '<h1>' + e.point[0] + '</h1>';
+          };
+        };
+      }
+    };
+  })
 
   .controller('VideoClipChartController', ['$scope', 'VideoClipService', 'TransfertimeNormalizeFilter', 'CrpUtils',
     function ($scope, VideoClipService, TransfertimeNormalizeFilter, CrpUtils) {
@@ -49,32 +83,11 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
         $scope.transfer_data = [{key: "transcoding", values: data }];
       });
 
-      $scope.data_x = function () {return function (d, i) {return d[2]}};
-      $scope.data_y = function () {return function (d, i) {return d[1]}};
-
-      // handle graphs
-      $scope.xAxisTickFormatFunction = function () { return function (secs) {return CrpUtils.secondsToTime(secs);};};
-      $scope.yAxisTickFormatFunction = function () {return function (d) {return CrpUtils.secondsToTime(d);};};
-
-      $scope.infoColor = function () {
-        return function (d, i) {
-          if (i === 0) return 'blue';
-          return 'red';
-        };
-      };
 
       $scope.$on('elementClick.directive', function (angularEvent, event) {
         $scope.show_asset(event.point[0]);
       });
 
-
-      $scope.tooltip = function () {
-        return function (key, x, y, e, graph) {
-          if (e.seriesIndex == 1) return "";
-          return  'Video clip ' +
-            '<h1>' + e.point[0] + '</h1>';
-        };
-      };
 
       function calc_norm(clip_length) {
         return clip_length * 5.67 + 1200;

@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-static-top" role="navigation" >
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
@@ -38,14 +38,16 @@
 
   <div class="row">
     <div class="col-lg-8">
-      <div ng-view></div>
+      <div ng-controller="VideoClipChartController">
+        <div report data="transfer_data" xfilter="filter1()"></div>
+      </div>
 
       <%= partial(:bar_chart_example) %>
       <%= partial(:timeline) %>
     </div>
     <div class="col-lg-4">
       <%= partial(:notifications) %>
-      <%= partial(:donut_chart) %>
+
       <%= partial(:chat) %>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <i class="fa fa-bar-chart-o fa-fw"></i> Report 1
+        <i class="fa fa-bar-chart-o fa-fw"></i> Report 2
         <div class="pull-right">
             <div class="btn-group">
                 <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -23,23 +23,23 @@
     </div>
     <div class="panel-body">
 
-        <button class="btn btn-primary" ng-click="filter1()">Filter 1</button>
+        <button class="btn btn-primary" ng-click="data_filter()">Filter 1</button>
 
         <nvd3-line-chart
-                data="vcp.transfer_data"
-                y="vcp.data_y()"
-                x="vcp.data_x()"
+                data="report_data"
+                y="data_y()"
+                x="data_x()"
                 id="xr2_graph"
                 showXAxis="true"
                 showYAxis="true"
                 tooltips="true"
-                xAxisTickFormat="vcp.xAxisTickFormatFunction()"
-                yAxisTickFormat="vcp.yAxisTickFormatFunction()"
+                xAxisTickFormat="xAxisTickFormatFunction()"
+                yAxisTickFormat="yAxisTickFormatFunction()"
                 interactive="true"
                 class="chart"
-                color="vcp.infoColor()"
-                tooltipContent="vcp.tooltip()"
-                callback="vcp.callback()"
+                color="infoColor()"
+                tooltipContent="tooltip()"
+                callback="callback()"
                 >
             <svg></svg>
         </nvd3-line-chart>

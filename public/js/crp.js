@@ -13,7 +13,7 @@ var app = angular.module('crp', ["nvd3ChartDirectives", "video_clip", "crp.utils
       $routeProvider.
         when('/dashboard', {
           templateUrl: '/partials/dashboard.html',
-          controller: 'VideoClipChartController'
+          controller: 'VideoClipChartController as vcp'
         }).
         otherwise({
           redirectTo: '/dashboard'
