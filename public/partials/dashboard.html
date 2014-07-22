@@ -1,27 +1,23 @@
-<div class="well">
-    <h2>Video clip report 1 - transcode time / clip length</h2>
-    <button class="btn btn-primary" ng-click="filter1()">Filter 1</button>
+<button class="btn btn-primary" ng-click="filter1()">Filter 1</button>
 
-    <nvd3-line-chart
-            data="transfer_data"
-            y="data_y()"
-            x="data_x()"
-            id="xr2_graph"
-            showXAxis="true"
-            showYAxis="true"
-            tooltips="true"
-            xAxisTickFormat="xAxisTickFormatFunction()"
-            yAxisTickFormat="yAxisTickFormatFunction()"
-            interactive="true"
-            class="chart"
-            color="infoColor()"
-            tooltipContent="tooltip()"
-            callback="callback()"
-            >
-        <svg></svg>
-    </nvd3-line-chart>
-
-</div>
+<nvd3-line-chart
+        data="transfer_data"
+        y="data_y()"
+        x="data_x()"
+        id="xr2_graph"
+        showXAxis="true"
+        showYAxis="true"
+        tooltips="true"
+        xAxisTickFormat="xAxisTickFormatFunction()"
+        yAxisTickFormat="yAxisTickFormatFunction()"
+        interactive="true"
+        class="chart"
+        color="infoColor()"
+        tooltipContent="tooltip()"
+        callback="callback()"
+        >
+    <svg></svg>
+</nvd3-line-chart>
 
 
 
