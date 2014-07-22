@@ -1,8 +1,9 @@
 <div class="well">
-    <h2>Transkoding i forhold til lengde</h2>
+    <h2>Video clip report 1 - transcode time / clip length</h2>
+    <button class="btn btn-primary" ng-click="filter1()">Filter 1</button>
 
     <nvd3-line-chart
-            data="r2_data"
+            data="transfer_data"
             y="data_y()"
             x="data_x()"
             id="xr2_graph"
@@ -20,7 +21,6 @@
         <svg></svg>
     </nvd3-line-chart>
 
-    <button class="btn btn-primary" ng-click="filter1()">Filter 1</button>
 </div>
 
 

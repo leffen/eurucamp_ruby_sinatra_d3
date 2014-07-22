@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('crp', ["nvd3ChartDirectives", "crp.utils", "crp.services", "ngRoute", "crp.chart"])
+var app = angular.module('crp', ["nvd3ChartDirectives", "video_clip", "crp.utils","ngRoute"])
 
   .controller('NavbarController', ['$scope', '$location', function ($scope, $location) {
     $scope.routeIs = function (routeName) {
@@ -13,7 +13,7 @@ var app = angular.module('crp', ["nvd3ChartDirectives", "crp.utils", "crp.servic
       $routeProvider.
         when('/dashboard', {
           templateUrl: '/partials/dashboard.html',
-          controller: 'ChartController'
+          controller: 'VideoClipChartController'
         }).
         otherwise({
           redirectTo: '/dashboard'

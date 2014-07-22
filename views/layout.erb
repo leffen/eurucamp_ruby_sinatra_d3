@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="crp">
 <head>
-  <title>Clip report</title>
+  <title>Eurucamp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag 'components/bootstrap/dist/css/bootstrap.min.css' %>
   <%= stylesheet_link_tag 'components/nvd3/nv.d3.css' %>
@@ -11,27 +11,6 @@
 
 </head>
 <body>
-<div class="navbar navbar-inverse  navbar-static-top" role="navigation" ng-controller="NavbarController">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="#">Clip report</a>
-  </div>
-
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-      <li ng-class="{active: routeIs('/')}"><a href="#/">Hjem</a></li>
-      <li ng-class="{active: routeIs('/om')}"><a href="#/om">Om</a></li>
-    </ul>
-
-  </div>
-  <!-- /.navbar-collapse -->
-</div>
 
 <%= yield %>
 
@@ -47,8 +26,7 @@
 
 
 <%= javascript_script_tag 'js/crp_utils.js' %>
-<%= javascript_script_tag 'js/crp_services.js' %>
-<%= javascript_script_tag 'js/chart/chart.js' %>
+<%= javascript_script_tag 'js/video_clip/video_clip.js' %>
 <%= javascript_script_tag 'js/crp.js' %>
 
 
