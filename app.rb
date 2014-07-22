@@ -14,6 +14,7 @@ class ClipReportApp < Sinatra::Base
 
   use Sinatra::CommonLogger
 
+  helpers Sinatra::Partials
   register Sinatra::StaticAssets
   register Sinatra::ConfigFile
 
