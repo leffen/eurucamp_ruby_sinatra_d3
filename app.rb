@@ -37,7 +37,7 @@ class ClipReportApp < Sinatra::Base
   end
 
   get '/api/video_clip/report/:id' do
-    make_ok_return(settings.report_data.report_1)
+    make_ok_return(settings.report_data.send("report_#{params[:id]}"))
   end
 
   get '/api/video_clip/stats' do

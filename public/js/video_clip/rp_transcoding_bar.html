@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <i class="fa fa-bar-chart-o fa-fw"></i> {{title}}
+  </div>
+  <div class="panel-body">
+    <nvd3-discrete-bar-chart
+      data="report_data"
+      id="transfer_data_graph"
+      showXAxis="false"
+      showYAxis="true"
+      tooltips="true"
+      xAxisTickFormat="xAxisTickFormatFunction()"
+      yAxisTickFormat="yAxisTickFormatFunction()"
+      interactive="true"
+      class="chart"
+      callback="callbackFunction()">
+    </nvd3-discrete-bar-chart>
+  </div>
+</div>
+
+
+
