@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <i class="fa fa-bell fa-fw"></i> {{title}}
+  </div>
+  <div class="panel-body">
+    <div class="list-group">
+      <a href="#" class="list-group-item" ng-repeat="n in data">
+        <i class="fa fa-{{n.type}} fa-fw"></i> {{n.text}}
+        <span class="pull-right text-muted small"><em>{{n.time|momentFromNow}}</em></span>
+      </a>
+    </div>
+  </div>
+</div>

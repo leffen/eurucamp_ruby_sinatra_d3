@@ -44,6 +44,10 @@ class ClipReportApp < Sinatra::Base
     make_ok_return(settings.report_data.stats)
   end
 
+  get '/api/video_clip/notifications' do
+    ce = Guru::ClipEvents.new
+    make_ok_return(ce.do_report)
+  end
 
 end
 
