@@ -19,29 +19,26 @@
 
 </nav>
 
-<div id="page-wrapper">
+<div id="page-wrapper" ng-controller="VideoClipChartController">
   <div class="row">
     <div class="col-lg-3 col-md-6">
-      <%= partial(:new_comments) %>
+      <big-stat panel-css="'panel-primary'" title="'Total'" number="stats.count" fa-font="'fa-comments'" ></big-stat>
     </div>
 
     <div class="col-lg-3 col-md-6">
-      <%= partial(:new_tasks) %>
+      <big-stat panel-css="'panel-green'" title="'Direct'" number="stats.direct" fa-font="'fa-tasks'" ></big-stat>
     </div>
     <div class="col-lg-3 col-md-6">
-      <%= partial(:new_orders) %>
+      <big-stat panel-css="'panel-yellow'" title="'Transcoded'" number="stats.transcoded" fa-font="'fa-shopping-cart'" ></big-stat>
     </div>
     <div class="col-lg-3 col-md-6">
-      <%= partial(:new_tickets) %>
+      <big-stat panel-css="'panel-red'" title="'Time'" number="ts" fa-font="'fa-support'" ></big-stat>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-8">
-      <div ng-controller="VideoClipChartController">
-        <div report data="transfer_data" xfilter="filter1()" title="'Transcoding/clip length'"></div>
-      </div>
-
+      <div report data="transfer_data" title="'Transcoding/clip length'" ></div>
       <%= partial(:bar_chart_example) %>
       <%= partial(:timeline) %>
     </div>

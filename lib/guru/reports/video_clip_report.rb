@@ -23,10 +23,12 @@ module Guru
     end
 
     def stats
+      errors = Random.rand(1000).to_s.to_i
       {
         count: @clip_map.count,
         direct: @clip_data.select{|c|c.without_transcoding}.count,
-        transcodet:  @clip_data.select{|c|!c.without_transcoding}.count,
+        transcoded:  @clip_data.select{|c|!c.without_transcoding}.count,
+        errors: errors,
         total_process_duration_seconds:  @clip_data.select { |e| e.process_duration_seconds>0 && !e.without_transcoding }.inject(0){|sum,c| sum += c.process_duration_seconds},
         total_duration_transcodet_seconds: @clip_data.select { |e| e.process_duration_seconds>0 && !e.without_transcoding }.inject(0){|sum,c| sum += c.duration_seconds}
       }

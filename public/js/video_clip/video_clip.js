@@ -1,11 +1,11 @@
 'use strict';
 
-var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.utils","ngResource"])
+var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.utils", "ngResource"])
 
   .service('VideoClipService', ['$resource', function ($resource) {
     return {
       report: function (id) {return $resource("/api/video_clip/report/:id", {id: '@id'}, {query: {method: 'GET', isArray: true}}).query({id: id});},
-      stats: function() {return $resource("/api/video_clip/stats", {}, {query: {method: 'GET'}}).query();}
+      stats: function () {return $resource("/api/video_clip/stats", {}, {query: {method: 'GET'}}).query();}
     };
   }])
 
@@ -39,17 +39,16 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
     };
     return factory;
   }])
-  .directive('report',function() {
+  .directive('report', function () {
     return {
       restrict: 'EA',
       templateUrl: 'partials/report2.html',
       scope: {
         report_data: '=data',
-        data_filter: '&xfilter',
         title: '='
       },
       replace: true,
-      controller: function($scope,CrpUtils) {
+      controller: function ($scope, CrpUtils) {
 
         $scope.data_x = function () {return function (d, i) {return d[2]}};
         $scope.data_y = function () {return function (d, i) {return d[1]}};
@@ -71,27 +70,59 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
               '<h1>' + e.point[0] + '</h1>';
           };
         };
+
       }
     };
   })
+  .directive('bigStat', function () {
+    return {
+      restrict: 'EA',
+      templateUrl: 'partials/big_stat.html',
+      scope: {
+        panel_css: '=panelCss',
+        fa_font: '=faFont',
+        title: '=',
+        number: '='
+      },
+      replace: true,
+      controller: function ($scope) {
+        console.log($scope);
+
+
+      }
+    };
+  })
+
 
   .controller('VideoClipChartController', ['$scope', 'VideoClipService', 'TransfertimeNormalizeFilter', 'CrpUtils',
     function ($scope, VideoClipService, TransfertimeNormalizeFilter, CrpUtils) {
 
       // Initialize data
-      $scope.transfer_data = [{key: "test", values: []} ];
+      $scope.transfer_data = [
+        {key: "test", values: []}
+      ];
       $scope.stats = {};
 
       // Get data
       VideoClipService.report(1).$promise.then(function (data) {
         $scope.src_data = data;
-        $scope.transfer_data = [{key: "transcoding", values: data }];
+        filter1();
       });
 
-      VideoClipService.stats().$promise.then(function(data){
+      VideoClipService.stats().$promise.then(function (data) {
         $scope.stats = data;
-        console.log(data);
       });
+
+      setInterval(function () {
+        $scope.$apply(function () {
+
+          $scope.clock = new Date();
+          $scope.ts = ("0" + $scope.clock.getHours()).slice(-2) + ":" +
+            ("0" + $scope.clock.getMinutes()).slice(-2) + ":" +
+            ("0" + $scope.clock.getSeconds()).slice(-2);
+        });
+      }, 1000);
+
 
       $scope.$on('elementClick.directive', function (angularEvent, event) {
         $scope.show_asset(event.point[0]);
@@ -102,11 +133,11 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
         return clip_length * 5.67 + 1200;
       };
 
-      $scope.show_asset=function(data) {
-        console.log("Show asset ",data);
+      $scope.show_asset = function (data) {
+        console.log("Show asset ", data);
       }
 
-      $scope.filter1 = function () {
+      function filter1() {
         var data = TransfertimeNormalizeFilter.filter($scope.src_data);
 
         $scope.transfer_data = [
