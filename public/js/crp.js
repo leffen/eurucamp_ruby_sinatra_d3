@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('crp', ["nvd3ChartDirectives", "video_clip", "crp.utils","ngRoute"])
+var app = angular.module('crp', ["nvd3ChartDirectives", "video_clip", "crp.utils","ngRoute","widgets"])
 
   .controller('NavbarController', ['$scope', '$location', function ($scope, $location) {
     $scope.routeIs = function (routeName) {

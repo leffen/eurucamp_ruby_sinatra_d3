@@ -26,7 +26,8 @@
     "metisMenu": "~1.1.1",
     "font-awesome": "~4.1.0",
     "toastr": "~2.0.3",
-    "angular-ui-router": "~0.2.10"
+    "angular-ui-router": "~0.2.10",
+    "moment": "~2.7.0"
   },
   "resolutions": {
     "d3": "~3.4.1"

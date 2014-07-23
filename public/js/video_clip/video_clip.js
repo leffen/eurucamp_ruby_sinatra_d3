@@ -74,26 +74,6 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
       }
     };
   })
-  .directive('bigStat', function () {
-    return {
-      restrict: 'EA',
-      templateUrl: 'partials/big_stat.html',
-      scope: {
-        panel_css: '=panelCss',
-        fa_font: '=faFont',
-        title: '=',
-        number: '='
-      },
-      replace: true,
-      controller: function ($scope) {
-        console.log($scope);
-
-
-      }
-    };
-  })
-
-
   .controller('VideoClipChartController', ['$scope', 'VideoClipService', 'TransfertimeNormalizeFilter', 'CrpUtils',
     function ($scope, VideoClipService, TransfertimeNormalizeFilter, CrpUtils) {
 
