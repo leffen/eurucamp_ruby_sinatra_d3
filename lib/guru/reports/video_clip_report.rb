@@ -11,15 +11,27 @@ module Guru
       data = File.read(file_name, :encoding => 'UTF-8')
       @clip_data = JSON.parse(data).map { |e| ProcessInfo.new(e) }.sort { |a, b| a.process_seconds_per_clip_minute <=> b.process_seconds_per_clip_minute }
       @clip_map = @clip_data.each_with_object({}) { |e, o| o[e.asset_id.to_i]=e }
-    end
-
-    def report_transfer_times
-      do_report :process_duration_seconds
+      @transcoders = @clip_data.group_by()
     end
 
     def report_1
       do_report :duration_seconds
     end
+
+    def report_2
+      do_report :process_duration_seconds
+    end
+
+    def stats
+      {
+        count: @clip_map.count,
+        direct: @clip_data.select{|c|c.without_transcoding}.count,
+        transcodet:  @clip_data.select{|c|!c.without_transcoding}.count,
+        total_process_duration_seconds:  @clip_data.select { |e| e.process_duration_seconds>0 && !e.without_transcoding }.inject(0){|sum,c| sum += c.process_duration_seconds},
+        total_duration_transcodet_seconds: @clip_data.select { |e| e.process_duration_seconds>0 && !e.without_transcoding }.inject(0){|sum,c| sum += c.duration_seconds}
+      }
+    end
+
 
     def do_report sort_field
       @clip_data.select { |e| e.process_duration_seconds>0 && !e.without_transcoding }
@@ -37,6 +49,9 @@ module Guru
       extended_data = Asset.get(asset_id.to_i) || {}
       basic_data.merge(extended_data)
     end
+
+
+
   end
 
 end

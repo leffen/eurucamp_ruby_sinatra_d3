@@ -40,6 +40,10 @@ class ClipReportApp < Sinatra::Base
     make_ok_return(settings.report_data.report_1)
   end
 
+  get '/api/video_clip/stats' do
+    make_ok_return(settings.report_data.stats)
+  end
+
 
 end
 

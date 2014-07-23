@@ -3,7 +3,10 @@
 var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.utils","ngResource"])
 
   .service('VideoClipService', ['$resource', function ($resource) {
-    return { report: function (id) {return $resource("/api/video_clip/report/:id", {id: '@id'}, {query: {method: 'GET', isArray: true}}).query({id: id});}};
+    return {
+      report: function (id) {return $resource("/api/video_clip/report/:id", {id: '@id'}, {query: {method: 'GET', isArray: true}}).query({id: id});},
+      stats: function() {return $resource("/api/video_clip/stats", {}, {query: {method: 'GET'}}).query();}
+    };
   }])
 
   .factory('TransfertimeNormalizeFilter', [function () {
@@ -77,6 +80,7 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
 
       // Initialize data
       $scope.transfer_data = [{key: "test", values: []} ];
+      $scope.stats = {};
 
       // Get data
       VideoClipService.report(1).$promise.then(function (data) {
@@ -84,6 +88,10 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
         $scope.transfer_data = [{key: "transcoding", values: data }];
       });
 
+      VideoClipService.stats().$promise.then(function(data){
+        $scope.stats = data;
+        console.log(data);
+      });
 
       $scope.$on('elementClick.directive', function (angularEvent, event) {
         $scope.show_asset(event.point[0]);
