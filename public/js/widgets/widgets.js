@@ -7,8 +7,6 @@ angular.module('widgets', [])
         return '';
       }
 
-
-
       var m = moment(Date.parse(value));
 
       return m.fromNow();
@@ -58,6 +56,22 @@ angular.module('widgets', [])
       }
     };
   })
+  .directive('timeline', function () {
+    return {
+      restrict: 'EA',
+      templateUrl: 'partials/timeline.html',
+      scope: {
+        data: '=',
+        title: '='
+      },
+      replace: true,
+      controller: function ($scope) {
+        $scope.timeline_side_class = function(item) {
+          return item[3] ? 'timeline-badge' : 'timeline-inverted';
+        };
 
+      }
+    };
+  })
 
 ;

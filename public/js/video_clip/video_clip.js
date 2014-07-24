@@ -7,7 +7,7 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
       report: function (id) {return $resource("/api/video_clip/report/:id", {id: '@id'}, {query: {method: 'GET', isArray: true}}).query({id: id});},
       stats: function () {return $resource("/api/video_clip/stats", {}, {query: {method: 'GET'}}).query();},
       notifications: function () {return $resource("/api/video_clip/notifications", {}, {query: {method: 'GET', isArray: true}}).query();},
-      chat:  function () {return $resource("/api/video_clip/chat", {}, {query: {method: 'GET', isArray: true}}).query();}
+      chat: function () {return $resource("/api/video_clip/chat", {}, {query: {method: 'GET', isArray: true}}).query();}
     };
   }])
 
@@ -118,17 +118,19 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
       $scope.transfer_data = [
         {key: "test", values: []}
       ];
-      $scope.stats = {};
-      $scope.notifications = [];
-      $scope.messages = [];
       $scope.rp2_data = [
         {key: "test", values: []}
       ];
 
+      $scope.stats = {};
+      $scope.notifications = [];
+      $scope.messages = [];
+      $scope.timeline = [];
+
       // Get data
       VideoClipService.report(1).$promise.then(function (data) {
         $scope.src_data = data;
-        filter1();
+        $scope.transfer_data = filter1();
       });
 
       VideoClipService.report(2).$promise.then(function (data) {
@@ -137,23 +139,19 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
         ];
       });
 
-      VideoClipService.stats().$promise.then(function (data) {
-        $scope.stats = data;
-      });
+      VideoClipService.stats().$promise.then(function (data) {$scope.stats = data;});
+      VideoClipService.notifications().$promise.then(function (data) {$scope.notifications = data;});
+      VideoClipService.chat().$promise.then(function (data) { $scope.messages = data;});
 
-      VideoClipService.notifications().$promise.then(function (data) {
-        $scope.notifications = data;
-      });
-
-      VideoClipService.chat().$promise.then(function (data) {
-        $scope.messages = data;
+      VideoClipService.report(3).$promise.then(function (data) {
+        $scope.timeline = data;
       });
 
       $interval(function () {
-          $scope.clock = new Date();
-          $scope.ts = ("0" + $scope.clock.getHours()).slice(-2) + ":" +
-            ("0" + $scope.clock.getMinutes()).slice(-2) + ":" +
-            ("0" + $scope.clock.getSeconds()).slice(-2);
+        $scope.clock = new Date();
+        $scope.ts = ("0" + $scope.clock.getHours()).slice(-2) + ":" +
+          ("0" + $scope.clock.getMinutes()).slice(-2) + ":" +
+          ("0" + $scope.clock.getSeconds()).slice(-2);
       }, 1000);
 
 
@@ -168,12 +166,12 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
 
       $scope.show_asset = function (data) {
         console.log("Show asset ", data);
-      }
+      };
 
       function filter1() {
         var data = TransfertimeNormalizeFilter.filter($scope.src_data);
 
-        $scope.transfer_data = [
+        return [
           {key: 'assets', values: data.filtered_data},
           {key: 'border_line', values: [
             [-1, calc_norm(0), 0],

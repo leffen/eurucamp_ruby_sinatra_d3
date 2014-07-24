@@ -11,6 +11,7 @@ gem 'thin'
 gem 'rake'
 gem 'faker','~> 1.4.2'
 
+
 group :development do
   gem 'awesome_print'
   gem 'shotgun'

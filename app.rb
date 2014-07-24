@@ -28,6 +28,8 @@ class ClipReportApp < Sinatra::Base
   end
 
   configure do
+    Encoding.default_external = Encoding::UTF_8
+
     data = Guru::VideoClipReport.new('data/video_clip_data.json')
     set :report_data, data
   end

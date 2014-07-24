@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <i class="fa fa-clock-o fa-fw"></i> {{title}}
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <ul class="timeline">
+
+      <li ng-repeat="item in data">
+        <div ng-class="timeline_side_class(item)"><i class="fa " ng-class="'fa-'+timeline_icon(item)"></i></div>
+
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4 class="timeline-title">{{item[7]}}</h4>
+
+            <p>
+              <small class="text-muted"><i class="fa fa-clock-o"></i> {{item[4]| momentFromNow}}</small>
+            </p>
+          </div>
+          <div class="timeline-body">
+            <div class="thumbnail"><img ng-src="{{item[8]}}" ></div>
+            <p>{{item[9]}}</p>
+          </div>
+        </div>
+      </li>
+
+
+
+    </ul>
+  </div>
+  <!-- /.panel-body -->
+</div>

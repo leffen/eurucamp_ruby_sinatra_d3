@@ -21,6 +21,17 @@ module Guru
       end
     end
 
+    def method_missing(name, *args, &block)
+      attribute = name.to_s
+      puts "Checking #{attribute}"
+      if attribute =~ /=$/
+        @attributes[attribute.chop] = args[0]
+      else
+        @attributes[attribute]
+      end
+    end
+
+
     def to_hash
       @attributes
     end
