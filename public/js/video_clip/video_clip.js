@@ -6,7 +6,8 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
     return {
       report: function (id) {return $resource("/api/video_clip/report/:id", {id: '@id'}, {query: {method: 'GET', isArray: true}}).query({id: id});},
       stats: function () {return $resource("/api/video_clip/stats", {}, {query: {method: 'GET'}}).query();},
-      notifications: function () {return $resource("/api/video_clip/notifications", {}, {query: {method: 'GET', isArray: true}}).query();}
+      notifications: function () {return $resource("/api/video_clip/notifications", {}, {query: {method: 'GET', isArray: true}}).query();},
+      chat:  function () {return $resource("/api/video_clip/chat", {}, {query: {method: 'GET', isArray: true}}).query();}
     };
   }])
 
@@ -119,6 +120,7 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
       ];
       $scope.stats = {};
       $scope.notifications = [];
+      $scope.messages = [];
       $scope.rp2_data = [
         {key: "test", values: []}
       ];
@@ -141,6 +143,10 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
 
       VideoClipService.notifications().$promise.then(function (data) {
         $scope.notifications = data;
+      });
+
+      VideoClipService.chat().$promise.then(function (data) {
+        $scope.messages = data;
       });
 
       $interval(function () {

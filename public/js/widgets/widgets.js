@@ -42,6 +42,22 @@ angular.module('widgets', [])
       }
     };
   })
+  .directive('chat', function () {
+    return {
+      restrict: 'EA',
+      templateUrl: 'partials/chat.html',
+      scope: {
+        data: '=',
+        title: '='
+      },
+      replace: true,
+      controller: function ($scope) {
+        $scope.chat_side = function(id) {
+          return id % 2 === 0 ? 'left' : 'right';
+        };
+      }
+    };
+  })
 
 
 ;

@@ -49,5 +49,8 @@ class ClipReportApp < Sinatra::Base
     make_ok_return(ce.do_report)
   end
 
+  get '/api/video_clip/chat' do
+    make_ok_return(Guru::GuruChat.new.do_report)
+  end
 end
 
