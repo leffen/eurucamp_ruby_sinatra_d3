@@ -3,6 +3,7 @@ module Guru
 
     def initialize(attributes)
       @attributes = attributes.clone
+      puts "attr = #{@attributes} "
       sorted_events = @attributes["events"] ? @attributes["events"].sort { |a, b| a["timestamp"]<=>b["timestamp"] } : []
       if sorted_events.count > 1
         @attributes["time_first"] = sorted_events.first["timestamp"]

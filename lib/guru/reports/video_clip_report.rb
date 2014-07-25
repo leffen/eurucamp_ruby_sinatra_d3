@@ -61,7 +61,10 @@ module Guru
     end
 
     def asset_get(asset_id)
-      Asset.new(JSON.parse(@redis.hget "demo_assets",asset_id) )
+      jdata = @redis.hget "demo_assets",asset_id
+      attributes = JSON.parse(jdata) if jdata
+      puts "attributes=#{attributes}"
+      Asset.new(attributes ) if attributes
     end
 
 

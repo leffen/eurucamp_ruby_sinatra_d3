@@ -13,3 +13,8 @@ task :check do
   importer = Guru::AssetImporter.new('data/video_clip_data.json')
   puts importer.check
 end
+
+task :fix_redis do
+  importer = Guru::AssetImporter.new('data/video_clip_data.json')
+  importer.update_redis_from_file
+end
