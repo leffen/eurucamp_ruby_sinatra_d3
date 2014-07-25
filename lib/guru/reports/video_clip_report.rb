@@ -24,6 +24,7 @@ module Guru
       do_report :process_duration_seconds
     end
 
+    # list of the last 50 assets processed with extended asset info
     def report_3
       @clip_data.select { |e| e.event_end }
       .sort { |a, b|  a.event_end["timestamp"] <=> b.event_end["timestamp"] }
@@ -36,6 +37,7 @@ module Guru
 
     end
 
+    # report on total transcode time for each transcoding server
     def report_4
       @clip_data.select { |e| e.event_end && !e.without_transcoding }
       .map{|e|[e.event_end["serverId"], e.process_duration_seconds, e.duration_seconds,e.without_transcoding,e.event_end["timestamp"]]}
@@ -43,6 +45,7 @@ module Guru
       .map{|k,v|[k, v.inject(0){|sum,e| e[1]}, v.inject(0){|sum,e| e[2]}] }
     end
 
+    # misc statistics for clip processing
     def stats
       errors = Random.rand(1000).to_s.to_i
       {

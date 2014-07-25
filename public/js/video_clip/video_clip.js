@@ -1,6 +1,6 @@
 'use strict';
 
-var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.utils", "ngResource"])
+angular.module('video_clip', ["nvd3ChartDirectives", "crp.utils", "ngResource"])
 
   .service('VideoClipService', ['$resource', function ($resource) {
     return {
@@ -8,6 +8,7 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
       stats: function () {return $resource("/api/video_clip/stats", {}, {query: {method: 'GET'}}).query();},
       notifications: function () {return $resource("/api/video_clip/notifications", {}, {query: {method: 'GET', isArray: true}}).query();},
       chat: function () {return $resource("/api/video_clip/chat", {}, {query: {method: 'GET', isArray: true}}).query();}
+
     };
   }])
 
@@ -41,76 +42,7 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
     };
     return factory;
   }])
-  .directive('rpTranscodeDistribution', function () {
-    return {
-      restrict: 'EA',
-      templateUrl: 'js/video_clip/rp_transcode_distribution.html',
-      scope: {
-        report_data: '=data',
-        title: '='
-      },
-      replace: true,
-      controller: function ($scope, CrpUtils) {
 
-        $scope.data_x = function () {return function (d, i) {return d[2]}};
-        $scope.data_y = function () {return function (d, i) {return d[1]}};
-
-        // handle graphs
-        $scope.xAxisTickFormatFunction = function () { return function (secs) {return CrpUtils.secondsToTime(secs);};};
-        $scope.yAxisTickFormatFunction = function () {return function (d) {return CrpUtils.secondsToTime(d);};};
-
-        $scope.infoColor = function () {
-          return function (d, i) {
-            if (i === 0) return 'blue';
-            return 'red';
-          };
-        };
-        $scope.tooltip = function () {
-          return function (key, x, y, e, graph) {
-            if (e.seriesIndex == 1) return "";
-            return  'Video clip ' +
-              '<h1>' + e.point[0] + '</h1>';
-          };
-        };
-
-      }
-    };
-  })
-  .directive('rpTranscodeBar', function () {
-    return {
-      restrict: 'EA',
-      templateUrl: 'js/video_clip/rp_transcoding_bar.html',
-      scope: {
-        report_data: '=data',
-        title: '='
-      },
-      replace: true,
-      controller: function ($scope, CrpUtils) {
-
-        $scope.data_x = function () {return function (d, i) {return d[2]}};
-        $scope.data_y = function () {return function (d, i) {return d[1]}};
-
-        // handle graphs
-        $scope.xAxisTickFormatFunction = function () { return function (secs) {return CrpUtils.secondsToTime(secs);};};
-        $scope.yAxisTickFormatFunction = function () {return function (d) {return CrpUtils.secondsToTime(d);};};
-
-        $scope.infoColor = function () {
-          return function (d, i) {
-            if (i === 0) return 'blue';
-            return 'red';
-          };
-        };
-        $scope.tooltip = function () {
-          return function (key, x, y, e, graph) {
-            if (e.seriesIndex == 1) return "";
-            return  'Video clip ' +
-              '<h1>' + e.point[0] + '</h1>';
-          };
-        };
-
-      }
-    };
-  })
   .controller('VideoClipChartController', ['$scope', 'VideoClipService', 'TransfertimeNormalizeFilter', '$interval',
     function ($scope, VideoClipService, TransfertimeNormalizeFilter, $interval) {
 
@@ -119,6 +51,10 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
         {key: "test", values: []}
       ];
       $scope.rp2_data = [
+        {key: "test", values: []}
+      ];
+
+      $scope.transcoding_server_stats = [
         {key: "test", values: []}
       ];
 
@@ -138,13 +74,14 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
           {key: "transcoding", values: data }
         ];
       });
-
       VideoClipService.stats().$promise.then(function (data) {$scope.stats = data;});
       VideoClipService.notifications().$promise.then(function (data) {$scope.notifications = data;});
       VideoClipService.chat().$promise.then(function (data) { $scope.messages = data;});
-
-      VideoClipService.report(3).$promise.then(function (data) {
-        $scope.timeline = data;
+      VideoClipService.report(3).$promise.then(function (data) {$scope.timeline = data;});
+      VideoClipService.report(4).$promise.then(function (data) {
+        $scope.transcoding_server_stats = [
+          {key: "Servers", values: data }
+        ];
       });
 
       $interval(function () {

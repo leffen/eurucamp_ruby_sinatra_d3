@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-bar-chart-o fa-fw"></i> {{title}}
+    </div>
+    <div class="panel-body">
+        <nvd3-discrete-bar-chart
+                data="report_data"
+                id="server_bar"
+                showXAxis="true"
+                showYAxis="true"
+                tooltips="true"
+                yAxisTickFormat="yAxisTickFormatFunction()"
+                interactive="true"
+                class="chart">
+        </nvd3-discrete-bar-chart>
+    </div>
+</div>
