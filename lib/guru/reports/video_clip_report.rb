@@ -68,6 +68,11 @@ module Guru
       }
     end
 
+    def max_y
+
+
+    end
+
 
     def do_report sort_field
       @clip_data.select { |e| e.process_duration_seconds>0 && !e.without_transcoding }

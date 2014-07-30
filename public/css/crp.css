@@ -342,3 +342,19 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
   color: #df8a13;
 }
+
+.panel-logo-size {
+  font-size: 3em;
+}
+
+@media (min-width: 768px) {
+  .panel-logo-size {
+    font-size: 4em;
+  }
+}
+@media (min-width: 992px) {
+  .panel-logo-size {
+    font-size: 5em;
+  }
+}
+

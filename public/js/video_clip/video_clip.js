@@ -70,8 +70,11 @@ angular.module('video_clip', ["nvd3ChartDirectives", "crp.utils", "ngResource"])
       });
 
       VideoClipService.report(2).$promise.then(function (data) {
+        $scope.rp2_src_data = data;
+        var data =  TransfertimeNormalizeFilter.filter(data);
+        console.log(data);
         $scope.rp2_data = [
-          {key: "transcoding", values: data }
+          {key: "transcoding", values: data.filtered_data }
         ];
       });
       VideoClipService.stats().$promise.then(function (data) {$scope.stats = data;});
@@ -98,7 +101,7 @@ angular.module('video_clip', ["nvd3ChartDirectives", "crp.utils", "ngResource"])
 
 
       function calc_norm(clip_length) {
-        return clip_length * 5.67 + 1200;
+        return clip_length * 7 + 1500;
       };
 
       $scope.show_asset = function (data) {
