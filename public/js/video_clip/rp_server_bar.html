@@ -5,10 +5,10 @@
     <div class="panel-body">
         <nvd3-discrete-bar-chart
                 data="report_data"
+                y="data_y()"
                 id="server_bar"
                 showXAxis="true"
                 showYAxis="true"
-                tooltips="true"
                 yAxisTickFormat="yAxisTickFormatFunction()"
                 interactive="true"
                 class="chart">

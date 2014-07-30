@@ -45,6 +45,16 @@ module Guru
       .map{|k,v|[k, v.inject(0){|sum,e| e[1]}, v.inject(0){|sum,e| e[2]}] }
     end
 
+
+    # report on number of each video format that whas been transcoded
+    def report_5
+      @clip_data.select { |e| e.event_end && !e.without_transcoding }
+      .map{|e|[e.event_end["serverId"], e.process_duration_seconds, e.duration_seconds,e.without_transcoding,e.event_end["timestamp"]]}
+      .group_by{|e|e[0]}
+      .map{|k,v|[k, v.inject(0){|sum,e| e[1]}, v.inject(0){|sum,e| e[2]}] }
+    end
+
+
     # misc statistics for clip processing
     def stats
       errors = Random.rand(1000).to_s.to_i

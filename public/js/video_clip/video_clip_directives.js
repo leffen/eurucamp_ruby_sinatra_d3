@@ -60,8 +60,9 @@ angular.module('video_clip')
         title: '='
       },
       replace: true,
-      controller: function ($scope) {
+      controller: function ($scope, CrpUtils) {
         $scope.data_y = function () {return function (d, i) {return d[1]}};
+        $scope.yAxisTickFormatFunction = function () {return function (d) {return CrpUtils.secondsToTime(d);};};
       }
     };
   })
