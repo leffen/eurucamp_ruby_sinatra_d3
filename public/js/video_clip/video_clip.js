@@ -16,6 +16,27 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
 
     factory.filter = function (series) {
       var data = {};
+      var max_y = 3600*8;
+      data.series = series;
+
+      data.max_x = 0;
+      data.discarded_points = [];
+
+      data.filtered_data = _.filter(series, function (e) {
+          if (e[1] < max_y) {
+            if (data.max_x < e[2])  data.max_x = e[2];
+            return true;
+          } else {
+            data.discarded_points.push(e);
+          }
+          return false;
+        }
+      );
+      return data;
+    };
+
+    factory.filter1 = function (series) {
+      var data = {};
       data.series = series;
 
       data.max_x = 0;
@@ -34,6 +55,8 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
       );
       return data;
     };
+
+
     return factory;
   }])
 
@@ -80,8 +103,27 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
         return clip_length * 5.67 + 1200;
       };
 
+      $scope.Nofilter = function () {
+        $scope.transfer_data = [{key: 'assets', values: $scope.src_data}];
+      };
+
+
       $scope.filter1 = function () {
         var data = TransfertimeNormalizeFilter.filter($scope.src_data);
+
+        $scope.transfer_data = [{key: 'assets', values: data.filtered_data}];
+      };
+
+      $scope.filter2 = function () {
+        var data = TransfertimeNormalizeFilter.filter1($scope.src_data);
+
+        $scope.transfer_data = [
+          {key: 'assets', values: data.filtered_data}
+        ];
+      };
+
+      $scope.filter3 = function () {
+        var data = TransfertimeNormalizeFilter.filter1($scope.src_data);
 
         $scope.transfer_data = [
           {key: 'assets', values: data.filtered_data},
@@ -91,6 +133,5 @@ var chart_module = angular.module('video_clip', ["nvd3ChartDirectives", "crp.uti
           ]}
         ];
       };
-
     }
   ]);
