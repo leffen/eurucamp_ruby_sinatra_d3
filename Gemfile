@@ -1,12 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'sinatra','1.4.4'
-gem 'redis','3.0.6'
+gem 'sinatra'
+gem 'redis'
 gem 'httparty'
 gem "mini_magick"
 
 gem 'sinatra-static-assets', ">=1.0"
 gem 'sinatra-contrib' # , git: 'https://github.com/sinatra/sinatra-contrib.git'
+gem 'celluloid','0.16.0'
 gem 'thin'
 gem 'rake'
 
